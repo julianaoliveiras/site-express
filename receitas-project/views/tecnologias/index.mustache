@@ -12,47 +12,109 @@
         <title>Identifcador de Receitas</title>
     </head>
     <body>
-        <div class="fundo7">
+        <div class="fundo6">
             <div class="centro">
                 <ul class="menu">
                     <li class="menu-horizontal"><a href="/" class="menu__link">Home</a></li>
                     <li class="menu-horizontal"><a href="/tecnologias"class="menu__link">Tecnologias</a></li>
                     <li class="menu-horizontal"><a href="/contato"class="menu__link">Contato</a></li>
-                    <li class="menu-horizontal"><a href="/sobre" class="menu__link">Sobre</a></li>
+                    <li class="menu-horizontal"><a href="/sobre"class="menu__link">Sobre</a></li>
                     <li class="menu-horizontal"><a href="/login" class="btn-entrar">Login</a></li>
-                    <li class="menu-horizontal"><a href="/registrar" class="btn-registrar">Registrar</a></li>
+                    <li class="menu-horizontal"><a href="/registrar" class="btn-registrar" onclick="loadDoc2()">Registrar</a></li>
                 </ul>
-            </div><div class="limpar"></div> 
-            <div class="apresentacao-box">
-                <div class="apresentacao-img">
-                    <img src="../images/contato.png" alt="">
-                </div>
-                <div class="apresentacao-descricao">
-                    <h2 class="titulo-apresentacao">
-                        <strong>Telefones:</strong><br> (12) 11223-4455
-                        <br> <br>
-                        <strong>E-mail:</strong> <br>idreceitas@gmail.com 
-                        <br> <br>
-                        <strong>Endereço:</strong><br> Rua Sol da Meia-Noite, 123, Centro - PR   
-                    </h2>
-                </div><div class="limpar"></div>
-            </div>
-            <div class="mandar-email">
+                <div class="limpar"></div> 
+            </div> 
+            <div class="posts-receitas">
                 <div class="centro">
-                    <div class="box-mandar-email">
-                        <div class="caixa-mandar-email">
-                            <div class="content-caixa" >
-                                <span class="mandar-email-text">Enviei um e-mail <br>sobre o que você achou do <br>projeto!</span> 
+                    <h2 class="receitas-titulo">Tecnologias e Ferramentas usadas:</h2>
+                    <h5 class="receitas-subtitulo">Que tal <strong class="negrito">experimentar</strong> algo novo hoje?</h5>
+                    <div class="conteiner">
+                        <div class="conteiner-box">
+                            <div class="post-espaco">
+                                <a href="#" class="post-link">
+                                    <div class="post-img">
+                                        <img src="../images/node.png" alt="">
+                                        <span class="post-titulo"><br>Node JS</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="conteiner-box">
+                            <div class="post-espaco">
+                                <a href="#" class="post-link">
+                                     <div class="post-img">
+                                         <img src="../images/mustache.png" alt="">
+                                        <span class="post-titulo"><br>Musctache </span>
+                                    </div>
+                                 </a>
+                            </div>
+                        </div>
+                        <div class="conteiner-box">
+                            <div class="post-espaco">
+                                <a href="#" class="post-link">
+                                    <div class="post-img">
+                                        <img src="../images/passport.png" alt="">
+                                        <span class="post-titulo"><br>Passport</span>
+                                     </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="conteiner-box">
+                            <div class="post-espaco">
+                                <a href="#" class="post-link">
+                                    <div class="post-img">
+                                        <img src="../images/express.png" alt="">
+                                        <span class="post-titulo"><br>Express JS</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="conteiner-box">
+                            <div class="post-espaco">
+                                <a href="#" class="post-link">
+                                    <div class="post-img">
+                                        <img src="../images/Docker.png" alt="">
+                                        <span class="post-titulo"><br>Docker</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="conteiner-box">
+                            <div class="post-espaco">
+                                <a href="#" class="post-link">
+                                    <div class="post-img">
+                                        <img src="../images/html-css.png" alt="">
+                                        <span class="post-titulo"><br>HTML e CSS</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div> 
+                        </div><div class="limpar"></div> 
+                    </div>
+                </div>
+                <div class="paginacao">
+                    <a href="#" class="paginacao-link ativo">1</a>
+                    <a href="#" class="paginacao-link">2</a>
+                    <a href="#" class="paginacao-link">3</a>
+                </div>
+                <div class="mandar-email receitas">
+                    <div class="centro">
+                        <div class="box-mandar-email">
+                            <div class="caixa-mandar-email">
+                                <div class="content-caixa" >
+                                    <span class="mandar-email-text">Enviei um e-mail <br>sobre o que você achou do <br>projeto!</span> 
                                 <form class="form" action="https://mail.google.com/" method="POST">
                                     <div class="mandar-email-input-box">
                                         <div class="mandar-email-icon">
                                             <input type="text" name="" value="" class="mandar-email-input" placeholder="digitar e-mail">
                                         </div>
-                                    </div>
+                                        </div>
                                     <div class="mandar-email-submit-box">
                                         <input type="submit" name="" value="" class="mandar-email-submit"></input>
                                     </div>
-                                </form><div class="limpar"></div>
+                                </form>
+                                <div class="limpar"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -92,8 +154,7 @@
                             <li class="rodape-menu-item"><a href="#" class="rodape-link">SAC</a></li>
                             <li class="rodape-menu-item"><a href="#" class="rodape-link">Dúvidas</a></li>
                         </ul>
-                    </div>
-                    <div class="limpar"></div>
+                    </div><div class="limpar"></div>
                 </div>
             </div> 
             <div class="autor">
@@ -107,18 +168,18 @@
                 document.getElementById("demo").innerHTML =
                 this.responseText;
                 }
-                xhttp.open("GET", "contato.html");
+                xhttp.open("GET", "login.html");
                 xhttp.send();
-            } 
+            }
             function loadDoc2() {
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function() {
                 document.getElementById("demo").innerHTML =
                 this.responseText;
                 }
-                xhttp.open("GET", "sobre.html");
+                xhttp.open("GET", "registrar.html");
                 xhttp.send();
-            } 
-        </script>      
+            }
+        </script>
     </body>
 </html>

@@ -11,16 +11,16 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 
 function authenticationMiddleware(req, res, next) {
-  if (req.isAuthenticated()) return next();
-  res.redirect('/login?fail=true');
-}
-
-var app = express();         
-
+  if (req.isAuthenticated()) return next(); 
+  res.redirect('/login?fail=true');  
+}     
+   
+var app = express();                   
+    
 // view engine setup  
-var mustacheExpress = require("mustache-express");      
-var engine = mustacheExpress();   
-app.engine("mustache", engine);       
+var mustacheExpress = require("mustache-express");         
+var engine = mustacheExpress();       
+app.engine("mustache", engine);         
     
 app.set('views', path.join(__dirname, 'views')); 
 app.set('view engine', 'mustache');   

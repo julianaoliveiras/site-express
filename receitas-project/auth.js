@@ -1,9 +1,9 @@
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 const users = [{
     _id: 1,
     username: "adm",
-    password: "$2a$06$HT.EmXYUUhNo3UQMl9APmeC0SwoGsx7FtMoAWdzGicZJ4wR1J8alW",
+    password: "123",
     email: "teste@gmail.com"
 }];
 
@@ -42,7 +42,7 @@ module.exports = function (passport) {
                 if (!user) { return done(null, false) }
 
                 // comparando as senhas
-                const isValid = bcrypt.compareSync(password, user.password);
+                const isValid = compareSync(password, user.password);
                 if (!isValid) return done(null, false)
                 
                 return done(null, user)
