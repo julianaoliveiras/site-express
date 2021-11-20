@@ -1,54 +1,71 @@
 //const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
-const users = [{
+const users = [
+  {
     _id: 1,
-    username: "adm",
-    password: "123",
-    email: "teste@gmail.com"
-}];
+
+    username: process.env.USER_EMAIL.split('@')[0],
+    password: process.env.USER_PASSWORD,
+    email: process.env.USER_EMAIL,
+  },
+];
+
 
 module.exports = function (passport) {
+  function findUser(username) {
+    return users.find((user) => user.username === username);
+  }
 
-    function findUser(username) {
-        return users.find(user => user.username === username);
-    }
+  function findUserById(id) {
+    return users.find((user) => user._id === id);
+  }
 
-    function findUserById(id) {
-        return users.find(user => user._id === id);
-    }
-
-    passport.serializeUser((user, done) => {
-        done(null, user._id);
+  function findUserByEmail(email) {
+    return users.find((user) => {
+      return user.email === email;
     });
+  }
 
-    passport.deserializeUser((id, done) => {
-        try {
-            const user = findUserById(id);
-            done(null, user);
-        } catch (err) {
-            done(err, null);
-        }
-    });
+  passport.serializeUser((user, done) => {
+    done(null, user._id);
+  });
 
-    passport.use(new LocalStrategy({
+  passport.deserializeUser((id, done) => {
+    try {
+      const user = findUserById(id);
+      done(null, user);
+    } catch (err) {
+      done(err, null);
+    }
+  });
+
+  passport.use(
+    new LocalStrategy(
+      {
         usernameField: 'username',
-        passwordField: 'password'
-    },
-        (username, password, done) => {
-            try {
-                const user = findUser(username);
 
-                // usuário inexistente
-                if (!user) { return done(null, false) }
+        passwordField: 'pass',
+      },
+      (username, password, done) => {
+        try {
+          const user = findUserByEmail(username);
 
-                // comparando as senhas
-                const isValid = compareSync(password, user.password);
-                if (!isValid) return done(null, false)
-                
-                return done(null, user)
-            } catch (err) {
-                done(err, false);
-            }
+          // usuário inexistente
+          if (!user) {
+            return done(null, false);
+          }
+
+          // comparando as senhas
+          // const isValid = bcrypt.compareSync(password, user.password);
+          const isValid = password === user.password;
+          if (!isValid) return done(null, false);
+
+          return done(null, user);
+        } catch (err) {
+          done(err, false);
+
         }
-    ));
-}
+      }
+    )
+  );
+};
