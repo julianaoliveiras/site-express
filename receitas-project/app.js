@@ -3,12 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan'); 
+var passport = require('passport');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index'); 
 var usersRouter = require('./routes/users');  
+var loginRouter = require('./routes/login');
+
+function authenticationMiddleware(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  res.redirect('/login?fail=true');
+}
 
 var app = express();         
-     
+
 // view engine setup  
 var mustacheExpress = require("mustache-express");      
 var engine = mustacheExpress();   
@@ -25,6 +33,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '/public')); 
 app.use('/', indexRouter);
 app.use('/users', usersRouter); 
+ 
+require('./auth')(passport); 
+app.use(session({  
+  secret: '123',//configure um segredo seu aqui,
+  resave: false,
+  saveUninitialized: false, 
+  cookie: { maxAge: 30 * 60 * 1000 }//30min
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/login', loginRouter);
+app.use('/users', authenticationMiddleware, usersRouter);
+app.use('/', authenticationMiddleware,  indexRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
