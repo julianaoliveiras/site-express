@@ -59,7 +59,7 @@ app.use(
     cookie: { maxAge: 30 * 60 * 1000 }, //30min
   })
 ); 
-app.use(passport.initialize());
+app.use(passport.initialize()); 
 app.use(passport.session());
 
 app.use('/', indexRouter);
