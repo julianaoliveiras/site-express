@@ -6,14 +6,14 @@ const PAGE = 'login';
 /* GET login page. */
 router.get('/', function (req, res, next) {
   if (req.query.fail) {
-    return  res.render(PAGE, { message: 'Usuário e/ou senha incorretos!' });
+    return res.render(PAGE, { message: 'Usuário e/ou senha incorretos!' });
   }
 
   if (req.cookies.username) {
-    return  res.render(PAGE, { username: req.cookies.username });
+    return res.redirect('/');
   }
 
-  return  res.render(PAGE);
+  return res.render(PAGE);
 });
 
 /* POST login page */

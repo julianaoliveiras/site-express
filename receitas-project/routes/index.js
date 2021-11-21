@@ -1,13 +1,17 @@
 var router = require('express').Router();
+
+const PAGE = 'home';
 //var home = require('../views/home/home.mustache')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   if (req.cookies.username) {
-    return res.render('home', { username: req.cookies.username });
+
+    return res.render(PAGE, { username: req.cookies.username });
+
   }
 
-  return res.render('./home', { title: 'Express' });
+  return res.render(PAGE);
 });
 
 // router.get('/contato', function (req, res, next) {
