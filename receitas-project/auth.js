@@ -3,7 +3,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const users = [
   {
     _id: 1,
-
     username: process.env.USER_EMAIL.split('@')[0],
     password: process.env.USER_PASSWORD,
     email: process.env.USER_EMAIL,
