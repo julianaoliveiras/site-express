@@ -1,12 +1,19 @@
-const express = require('express');
-const router = express.Router();
-const passport = require('passport');
+var router = require('express').Router();
+var passport = require('passport');
+
+const PAGE = 'login';
 
 /* GET login page. */
-router.get('/', (req, res, next) => {
+router.get('/', function (req, res, next) {
   if (req.query.fail) {
-    res.render('login', { message: 'Usuário e/ou senha incorretos!' });
-  } else res.render('login', { message: null });
+    return  res.render(PAGE, { message: 'Usuário e/ou senha incorretos!' });
+  }
+
+  if (req.cookies.username) {
+    return  res.render(PAGE, { username: req.cookies.username });
+  }
+
+  return  res.render(PAGE);
 });
 
 /* POST login page */
@@ -28,9 +35,7 @@ router.post('/', (req, res, next) => {
       return res.redirect('/login?fail=true');
     }
 
-    console.log(JSON.stringify(req.query));
-
-    req.login(user, (error) => {
+    req.logIn(user, (error) => {
       if (error) {
         return next(error);
       }

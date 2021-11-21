@@ -10,7 +10,6 @@ const users = [
   },
 ];
 
-
 module.exports = function (passport) {
   function findUser(username) {
     return users.find((user) => user.username === username);
@@ -63,7 +62,6 @@ module.exports = function (passport) {
           return done(null, user);
         } catch (err) {
           done(err, false);
-
         }
       }
     )
