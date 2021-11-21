@@ -21,7 +21,7 @@
                     <li class="menu-horizontal"><a href="/sobre" class="menu__link">Sobre</a></li>
                     {{#username}}
                         <li class="menu-horizontal"><span>{{username}}</span></li>
-                        <li class="menu-horizontal"><a href="/receitas" class="btn-entrar">Alterar nome</a></li>
+                        <li class="menu-horizontal"><a href="/alterarNome" class="btn-entrar">Alterar nome</a></li>
                         <li class="menu-horizontal"><a href="/logout" class="btn-registrar">Sair</a></li>
                     {{/username}}
                     {{^username}}
@@ -39,7 +39,7 @@
                             <span class="login-titulo-1">Alterar nome de Usuário</span>
                         </div>
                         <div class="form-group form-group-lg">
-                            <form class="login-form" action="" method="POST">
+                            <form class="login-form" action="/alterarNome" method="POST">
                                 <div class="input" >
                                     <label for="inputdefault"><span class="label-input">Novo Nome<span></label>
                                     <input class="form-input " type="text" name="username" placeholder="Entrar com o novo nome:">

@@ -1,6 +1,6 @@
 var router = require('express').Router();
 
-const PAGE = 'receitas';
+const PAGE = 'alterarNome';
 
 router.get('/', function (req, res, next) {
   if (!req.cookies.username) {

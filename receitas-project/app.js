@@ -21,7 +21,7 @@ var loginRouter = require('./routes/login');
 var registrarRouter = require('./routes/registrar');
 var sobreRouter = require('./routes/sobre');
 var tecnologiasRouter = require('./routes/tecnologias');
-var receitasRouter = require('./routes/receitas');
+var alterarNomeRouter = require('./routes/alterarNome');
 var logoutRouter = require('./routes/logout');
 
 dotenv.config();
@@ -61,14 +61,14 @@ app.use(
 ); 
 app.use(passport.initialize()); 
 app.use(passport.session());
-
+ 
 app.use('/', indexRouter);
 app.use('/contato', contatoRouter);
 app.use('/login', loginRouter);
 app.use('/registrar', registrarRouter);
 app.use('/sobre', sobreRouter);
 app.use('/tecnologias', tecnologiasRouter);
-app.use('/receitas', receitasRouter);
+app.use('/alterarNome',alterarNomeRouter);
 app.use('/logout', logoutRouter);
 
 // catch 404 and forward to error handler
