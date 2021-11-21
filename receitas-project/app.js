@@ -20,10 +20,10 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registrarRouter = require('./routes/registrar');
 var sobreRouter = require('./routes/sobre');
-var tecnologiasRouter = require('./routes/tecnologias'); 
-var receitasRouter = require('./routes/receitas'); 
- 
-dotenv.config();  
+var tecnologiasRouter = require('./routes/tecnologias');
+var logoutRouter = require('./routes/logout');
+
+dotenv.config();
 
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
@@ -66,14 +66,14 @@ app.use('/contato', contatoRouter);
 app.use('/login', loginRouter);
 app.use('/registrar', registrarRouter);
 app.use('/sobre', sobreRouter);
-app.use('/tecnologias', tecnologiasRouter); 
-app.use('/receitas', receitasRouter);
- 
-// catch 404 and forward to error handler  
-app.use(function (req, res, next) {                   
-  next(createHttpError(404));                       
-});     
- 
+app.use('/tecnologias', tecnologiasRouter);
+app.use('/logout', logoutRouter);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createHttpError(404));
+});
+
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
