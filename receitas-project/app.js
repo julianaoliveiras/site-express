@@ -69,10 +69,10 @@ app.use('/sobre', sobreRouter);
 app.use('/tecnologias', tecnologiasRouter); 
 app.use('/receitas', receitasRouter);
  
-// catch 404 and forward to error handler 
-app.use(function (req, res, next) {           
-  next(createHttpError(404));              
-}); 
+// catch 404 and forward to error handler  
+app.use(function (req, res, next) {                   
+  next(createHttpError(404));                       
+});     
  
 // error handler
 app.use(function (err, req, res, next) {
@@ -81,7 +81,7 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
+  res.status(err.status || 500); 
   // res.render('error');
   console.log(err);
 });
