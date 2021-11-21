@@ -19,8 +19,15 @@
                     <li class="menu-horizontal"><a href="/tecnologias"class="menu__link">Tecnologias</a></li>
                     <li class="menu-horizontal"><a href="/contato"class="menu__link">Contato</a></li>
                     <li class="menu-horizontal"><a href="/sobre"class="menu__link">Sobre</a></li>
-                    <li class="menu-horizontal"><a href="/login" class="btn-entrar">Login</a></li>
-                    <li class="menu-horizontal"><a href="/registrar" class="btn-registrar" onclick="loadDoc2()">Registrar</a></li>
+                    {{#username}}
+                        <li class="menu-horizontal"><span>{{username}}</span></li>
+                        <li class="menu-horizontal"><a href="/receitas" class="btn-entrar">Alterar nome</a></li>
+                        <li class="menu-horizontal"><a href="/logout" class="btn-registrar">Sair</a></li>
+                    {{/username}}
+                    {{^username}}
+                        <li class="menu-horizontal"><a href="/login" class="btn-entrar">Login</a></li>
+                        <li class="menu-horizontal"><a href="/registrar" class="btn-registrar">Registrar</a></li>
+                    {{/username}}
                 </ul>
                 <div class="limpar"></div> 
             </div> 
