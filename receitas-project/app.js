@@ -21,6 +21,7 @@ var loginRouter = require('./routes/login');
 var registrarRouter = require('./routes/registrar');
 var sobreRouter = require('./routes/sobre');
 var tecnologiasRouter = require('./routes/tecnologias');
+var receitasRouter = require('./routes/receitas');
 var logoutRouter = require('./routes/logout');
 
 dotenv.config();
@@ -67,6 +68,7 @@ app.use('/login', loginRouter);
 app.use('/registrar', registrarRouter);
 app.use('/sobre', sobreRouter);
 app.use('/tecnologias', tecnologiasRouter);
+app.use('/receitas', receitasRouter);
 app.use('/logout', logoutRouter);
 
 // catch 404 and forward to error handler
