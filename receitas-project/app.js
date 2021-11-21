@@ -20,16 +20,17 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registrarRouter = require('./routes/registrar');
 var sobreRouter = require('./routes/sobre');
-var tecnologiasRouter = require('./routes/tecnologias');
-
-dotenv.config();
+var tecnologiasRouter = require('./routes/tecnologias'); 
+var receitasRouter = require('./routes/receitas'); 
+ 
+dotenv.config();  
 
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect('/login?fail=true');
-}
+} 
 
-const app = express();
+const app = express();  
 
 // view engine setup
 const mustacheExpress = require('mustache-express');
@@ -56,7 +57,7 @@ app.use(
     saveUninitialized: false,
     cookie: { maxAge: 30 * 60 * 1000 }, //30min
   })
-);
+); 
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -65,13 +66,14 @@ app.use('/contato', contatoRouter);
 app.use('/login', loginRouter);
 app.use('/registrar', registrarRouter);
 app.use('/sobre', sobreRouter);
-app.use('/tecnologias', tecnologiasRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createHttpError(404));
-});
-
+app.use('/tecnologias', tecnologiasRouter); 
+app.use('/receitas', receitasRouter);
+ 
+// catch 404 and forward to error handler 
+app.use(function (req, res, next) {           
+  next(createHttpError(404));              
+}); 
+ 
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development

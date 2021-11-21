@@ -4,7 +4,7 @@ var router = require('express').Router();
 /* GET home page. */
 router.get('/', function (req, res, next) {
   if (req.cookies.username) {
-    return res.render('login', { username: req.cookies.username });
+    return res.render('home', { username: req.cookies.username });
   }
 
   return res.render('./home', { title: 'Express' });
