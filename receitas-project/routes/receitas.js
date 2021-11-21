@@ -3,11 +3,17 @@ var router = require('express').Router();
 const PAGE = 'receitas';
 
 router.get('/', function (req, res, next) {
-  if (req.cookies.username) {
-    return res.render(PAGE, { username: req.cookies.username });
+  if (!req.cookies.username) {
+    return res.redirect('./login');
   }
 
-  return res.render(PAGE);
+  return res.render(PAGE, { username: req.cookies.username });
+});
+
+router.post('/', (req, res, next) => {
+  const { username } = req.body;
+
+  return res.cookie('username', username).redirect('/');
 });
 
 module.exports = router;
