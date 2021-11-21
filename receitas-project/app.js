@@ -22,16 +22,19 @@ var registrarRouter = require('./routes/registrar');
 var sobreRouter = require('./routes/sobre');
 var tecnologiasRouter = require('./routes/tecnologias');
 var alterarNomeRouter = require('./routes/alterarNome');
-var logoutRouter = require('./routes/logout');
+var logoutRouter = require('./routes/logout'); 
+var bodyParser = require('body-parser');
+var nodemailer = require('nodemailer');
+var config = require('./config');
 
-dotenv.config();
+dotenv.config();  
 
 function authenticationMiddleware(req, res, next) {
-  if (req.isAuthenticated()) return next();
-  res.redirect('/login?fail=true');
-} 
+  if (req.isAuthenticated()) return next(); 
+  res.redirect('/login?fail=true');  
+}   
 
-const app = express();  
+const app = express();    
 
 // view engine setup
 const mustacheExpress = require('mustache-express');
@@ -65,15 +68,64 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/contato', contatoRouter);
 app.use('/login', loginRouter);
-app.use('/registrar', registrarRouter);
+app.use('/registrar', registrarRouter); 
 app.use('/sobre', sobreRouter);
 app.use('/tecnologias', tecnologiasRouter);
 app.use('/alterarNome',alterarNomeRouter);
 app.use('/logout', logoutRouter);
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+app.get ('/', (req, res) => {
+  res.render(config.theme);
+});
+app.post('/send', (req, res) => {
+  const output = `
+      <p>You have a message</p>
+      <h3>Contact Details</h3>
+      <p>Name: ${req.body.name}</p>
+      <p>Email: ${req.body.email}</p>
+      <h3>Message</h3>
+      <p>${req.body.message}</p>
+  `;
+  const successAlert = `
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Message has been sent
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+              </button>
+      </div>
+  `;
+  const failAlert = `
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              Failed to send message. Please refresh this page
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+              </button>
+      </div>
+  `;
+  let transporter = nodemailer.createTransport(
+      `smtps://${config.user}:${config.pass}@smtp.gmail.com`
+  );
+  let mailOptions = {
+          from: config.from,
+          to: config.to,
+          subject: config.subject,
+          html: output
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+                  res.render(config.theme, {msg: failAlert});
+          }
+
+          res.render(config.theme, {msg: successAlert});
+  });
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createHttpError(404));
+  next(createHttpError(404)); 
 });
 
 // error handler
@@ -88,4 +140,13 @@ app.use(function (err, req, res, next) {
   console.log(err);
 });
 
+
+
+
+
+
+
 module.exports = app;
+
+
+

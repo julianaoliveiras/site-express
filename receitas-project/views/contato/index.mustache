@@ -39,29 +39,42 @@
                         <div class="login-titulo" style="background-image: url(../images/fundo4.png);">
                             <span class="login-titulo-1">Envio de E-mail</span>
                         </div>
+                        </br></br>
                         <div class="form-group form-group-lg">
-                            <form class="login-form" action="/login" method="POST">
-                                <div class="input" >
-                                    <label for="inputdefault"><span class="label-input">Nome</span></label>
-                                    <input class="form-input " type="text" name="username" placeholder="Entrar com o e-mail">
+                            <form class="contact-form" method="POST" action="send">
+                        {{{msg}}}
+
+                            <!-- Name -->
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label">Your Name</label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="name" class="form-control form-control-sm">
                                 </div>
-                                <div class="input" >
-                                    <label for="inputdefault"><span class="label-input">E-mail</span></label>
-                                    <input class="form-input" type="password" name="pass" placeholder="Entrar com a senha">
-                                    <span class="focus"></span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label">Email Adress</label>
+                                <div class="col-lg-8">
+                                    <input type="email" name="email" class="form-control form-control-sm">
                                 </div>
-                                <div class="input" >
-                                    <label for="inputdefault"><span class="label-input">Assunto</span></label>
-                                    <input class="form-input " type="text" name="username" placeholder="Entrar com o e-mail">
+                            </div>
+                            
+                            <!-- Message -->
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label">Message</label>
+                                <div class="col-lg-8">
+                                    <textarea class="form-control form-control-sm" name="message" rows="5" required></textarea>
                                 </div>
-                                <div class="input" >
-                                    <label for="inputdefault"><span class="label-input">Mensagem</span></label>
-                                    <input class="form-input " type="text" name="username" placeholder="Entrar com o e-mail">
-                                </div>
-                                <div class="btn-logar-box">
-                                    <button class="btn btn-default btn-lg btn-logar">Enviar</button>
-                                </div>
-                            </form>
+                                    
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-right">
+                                <input class="btn btn-default btn-lg btn-logar" type="submit" value="Submit">
+                            </div>
+
+                    </form>
                             </div> 
                         </div>
                     </div>
